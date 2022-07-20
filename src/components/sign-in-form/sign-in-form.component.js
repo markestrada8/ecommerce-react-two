@@ -1,14 +1,16 @@
-import { useState } from "react";
+import {
+  useState,
+  // useContext
+} from "react";
 import {
   signInAuthUserWithEmailAndPassword,
   signInWithGooglePopup,
-  signInWithGoogleRedirect,
-  createUserDocumentFromAuth,
+  // createUserDocumentFromAuth,
 } from "../../utilities/firebase/firebase.utils";
 import FormInput from "../form-input/form-input.component";
 import "./sign-in-form.styles.scss";
 import Button from "../button/button.component";
-import { signInWithPopup } from "firebase/auth";
+// import { UserContext } from "../../contexts/user.context";
 
 const defaultFormFields = {
   email: "",
@@ -19,6 +21,10 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
 
   const { email, password } = formFields;
+
+  //destructure setter from imported context
+  //removing because of authListener
+  // const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -31,7 +37,11 @@ const SignInForm = () => {
         email,
         password
       );
-      console.log(user);
+      //set context with imported context setter (response.user)
+      //access from navigation
+
+      //removing because of authListener
+      // setCurrentUser(user);
 
       resetFormFields();
     } catch (error) {
@@ -55,8 +65,9 @@ const SignInForm = () => {
 
   const signInWithGoogle = async () => {
     //popup google login, return user auth object, destructure to user
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+
+    //changing because of autObserver ... handled now on firebase side?
+    await signInWithGooglePopup();
   };
 
   return (
