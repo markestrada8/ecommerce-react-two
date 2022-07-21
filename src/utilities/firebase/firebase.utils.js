@@ -47,7 +47,7 @@ export const createUserDocumentFromAuth = async (
 ) => {
   //create document object from auth?
   const userDocRef = doc(db, "users", userAuth.uid);
-  console.log(userDocRef);
+  // console.log(userDocRef);
 
   //create a db formatted doc, or draft doc, from userDocRef
   const userSnapshot = await getDoc(userDocRef);

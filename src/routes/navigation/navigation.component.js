@@ -2,15 +2,19 @@ import { Fragment, useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../contexts/user.context";
+import { CartContext } from "../../contexts/cart.context";
 import { signOutUser } from "../../utilities/firebase/firebase.utils";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
+import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 import "./navigation.styles.scss";
 
 const Navigation = () => {
   const {
     currentUser,
     // setCurrentUser
-  } = useContext(UserContext);
-  // console.log(currentUser);
+  } = useContext(CartContext);
+
+  const { cartIsOpen, setCartIsOpen } = useContext(CartContext);
 
   //put firebase function in the button call back w/o proxy / wrapper
   // const signOutHandler = async () => {
@@ -39,6 +43,8 @@ const Navigation = () => {
               SIGN IN
             </Link>
           )}
+          <CartIcon />
+          {cartIsOpen && <CartDropdown />}
         </div>
       </div>
       <Outlet />
