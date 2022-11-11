@@ -16,8 +16,8 @@ const addCartItem = (cartItems, productToAdd) => {
 
 // actual value to access
 export const CartContext = createContext({
-  cartIsOpen: null,
-  setCartIsOpen: () => { },
+  isCartOpen: null,
+  setIsCartOpen: () => { },
   cartItems: [],
   addItemToCart: () => { },
 });
@@ -25,7 +25,7 @@ export const CartContext = createContext({
 //provider component (not sure why we set state when it's set above also...?)
 
 export const CartProvider = ({ children }) => {
-  const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState([]);
 
   //set state / context
@@ -34,8 +34,8 @@ export const CartProvider = ({ children }) => {
   };
 
   const value = {
-    cartIsOpen: cartIsOpen,
-    setCartIsOpen: setCartIsOpen,
+    isCartOpen: isCartOpen,
+    setIsCartOpen: setIsCartOpen,
     addItemToCart: addItemToCart,
     cartItems: cartItems
   };

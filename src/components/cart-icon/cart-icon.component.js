@@ -4,10 +4,10 @@ import { CartContext } from "../../contexts/cart.context";
 import "./cart-icon.styles.scss";
 
 const CartIcon = () => {
-  const { cartIsOpen, setCartIsOpen } = useContext(CartContext);
+  const { isCartOpen, setIsCartOpen } = useContext(CartContext);
 
   const handleClick = () => {
-    setCartIsOpen(!cartIsOpen);
+    setIsCartOpen(!isCartOpen);
   };
   return (
     <div className="cart-icon-container" onClick={handleClick}>
