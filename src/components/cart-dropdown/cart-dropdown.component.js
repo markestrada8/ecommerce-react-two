@@ -10,11 +10,13 @@ const CartDropdown = () => {
   // console.log(cartItems);
   return (
     <div className="cart-dropdown-container">
-      <div className="cart-items" />
-      {cartItems.map((item) => (
-        <CartItem key={item.id} cartItem={item} />
-      ))}
-      <Button>CHECKOUT</Button>
+      <div className="cart-items" >
+        {cartItems.map((item) => (
+          <CartItem key={item.id} cartItem={item} quantity={item.quantity} />
+        ))}
+
+      </div>
+      <Button >CHECKOUT</Button>
     </div>
   );
 };

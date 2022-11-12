@@ -6,7 +6,7 @@ const addCartItem = (cartItems, productToAdd) => {
   if (cartItems.find((item) => item.id === productToAdd.id)) {
     return cartItems.map((item) =>
       item.id === productToAdd.id
-        ? { ...item, quanity: item.quantity + 1 }
+        ? { ...item, quantity: item.quantity + 1 }
         : item
     );
   } else {
