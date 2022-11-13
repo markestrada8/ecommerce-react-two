@@ -11,7 +11,17 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
+  DocumentSnapshot
+} from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDDGbCWhc2OE4tGm-DWxfx4oHaXWcHlxSo",
@@ -22,7 +32,7 @@ const firebaseConfig = {
   appId: "1:563201791281:web:3eb05e971b72c6c2c64c10",
 };
 
-// Initialize Firebase
+// Initialize Firebase (but never use it?)
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -39,6 +49,33 @@ export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, googleProvider);
 
 export const db = getFirestore();
+
+export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
+  const collectionReference = collection(db, collectionKey)
+  const batch = writeBatch(db)
+
+  objectsToAdd.forEach((object) => {
+    const documentReference = doc(collectionReference, object.title.toLowerCase())
+    batch.set(documentReference, object)
+  })
+
+  await batch.commit()
+  console.log('Documents written to Firebase')
+}
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionReference = collection(db, 'categories')
+  const q = query(collectionReference)
+
+  const querySnapshot = await getDocs(q)
+  const categoryMap = querySnapshot.docs.reduce((prevObjects, docSnapshot) => {
+    const { title, items } = docSnapshot.data()
+    prevObjects[title.toLowerCase()] = items
+    return prevObjects
+  }, {})
+
+  return categoryMap
+}
 
 //Recieve response.user.uid from login method in sign-in.js
 export const createUserDocumentFromAuth = async (
