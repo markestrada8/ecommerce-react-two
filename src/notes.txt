@@ -82,4 +82,5 @@ categories.styles.scss
 ##
 adding redux
 
+note #2
 ##
