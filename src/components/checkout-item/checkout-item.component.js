@@ -1,6 +1,15 @@
 import React from 'react'
 
-import './checkout-item.styles.scss'
+import {
+  CheckoutItemContainer,
+  ImageContainer,
+  Name,
+  Quantity,
+  Price,
+  Arrow,
+  Value,
+  RemoveButton
+} from './checkout-item.styles'
 
 const CheckoutItem = ({ item, removeItemFromCart, increaseItem, decreaseItem }) => {
   const { name, imageURL, price, quantity } = item
@@ -11,25 +20,25 @@ const CheckoutItem = ({ item, removeItemFromCart, increaseItem, decreaseItem }) 
 
 
   return (
-    <div className="checkout-item-container">
-      <div className="image-container">
+    <CheckoutItemContainer>
+      <ImageContainer>
         <img src={imageURL} alt={`${name}`} />
-      </div>
-      <span className='name'>{name}</span>
-      <span className='quantity'>
+      </ImageContainer>
+      <Name>{name}</Name>
+      <Quantity>
         {quantity > 1 &&
-          <span className="arrow" onClick={decreaseHandler}>
+          <Arrow onClick={decreaseHandler}>
             &#10094;
-          </span>}
-        <span className='value'>{quantity}</span>
-        <span className="arrow" onClick={increaseHandler}>
+          </Arrow>}
+        <Value>{quantity}</Value>
+        <Arrow onClick={increaseHandler}>
           &#10095;
-        </span>
-      </span>
-      <span className='price'>{price}</span>
-      <span onClick={removeHandler} className="remove-button">&#10005;</span>
+        </Arrow>
+      </Quantity>
+      <Price>{price}</Price>
+      <RemoveButton onClick={removeHandler}>&#10005;</RemoveButton>
 
-    </div>
+    </CheckoutItemContainer>
   )
 }
 

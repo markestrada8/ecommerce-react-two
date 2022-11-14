@@ -1,7 +1,7 @@
 import {
-   useState, 
+  useState,
   //  useContext 
-  } from "react";
+} from "react";
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,
@@ -11,7 +11,9 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 // import { UserContext } from "../../contexts/user.context";
 
-import "./sign-up-form.styles.scss";
+import {
+  SignUpContainer
+} from "./sign-up-form.styles";
 
 const defaultFormFields = {
   displayName: "",
@@ -53,7 +55,7 @@ const SignUpForm = () => {
       );
       //set context user object to response.user
       // setCurrentUser(user);
-        //create doc in db format to be stored
+      //create doc in db format to be stored
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
     } catch (error) {
@@ -74,7 +76,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className="sign-up-container">
+    <SignUpContainer>
       <h2>Don't Have an Account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
@@ -110,11 +112,11 @@ const SignUpForm = () => {
           value={confirmPassword}
           onChange={handleChange}
 
-          // placeholder="Confirm Password"
+        // placeholder="Confirm Password"
         />{" "}
         <Button type="submit">SIGN UP</Button>
       </form>
-    </div>
+    </SignUpContainer>
   );
 };
 

@@ -1,6 +1,5 @@
-import { Outlet } from "react-router-dom";
-import "../../categories.styles.scss";
-import Catalogue from "../../components/catalogue/catalogue.component";
+import { Outlet } from "react-router-dom"
+import Catalogue from "../../components/catalogue/catalogue.component"
 
 const Home = () => {
   return (
@@ -8,7 +7,7 @@ const Home = () => {
       <Catalogue />
       <Outlet />
     </div>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home
