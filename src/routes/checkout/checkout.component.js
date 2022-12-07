@@ -12,7 +12,7 @@ import {
 } from "./checkout.styles"
 
 const Checkout = () => {
-  const { removeItemFromCart, increaseItem, decreaseItem, cartItems } = useContext(CartContext);
+  const { removeItemFromCart, increaseItem, decreaseItem, cartItems, cartTotal } = useContext(CartContext);
 
   return (
     <CheckoutContainer>
@@ -45,7 +45,7 @@ const Checkout = () => {
         )
       })}
       <Total>
-        Total: ${cartItems.reduce((total, item) => total + item.quantity * item.price, 0)}
+        Total: ${cartTotal}
       </Total>
     </CheckoutContainer>
   )

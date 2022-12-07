@@ -6,19 +6,23 @@ import React from 'react'
 import ProductCard from '../../components/product-card/product-card.component'
 import { Fragment } from 'react/cjs/react.production.min'
 
+import { useSelector } from 'react-redux'
+import { selectCategories } from '../../store/categories/category.selector'
+
 import {
   CategoryContainer,
   CategoryTitle
 } from './category.styles'
 
 const Category = () => {
-  const { categoriesMap } = useContext(CategoriesContext)
+  // const { categoriesMap } = useContext(CategoriesContext)
+  const products = useSelector(selectCategories)
   const { category } = useParams()
-  const [products, setProducts] = useState(categoriesMap[category])
+  // const [products, setProducts] = useState(categoriesMap[category])
 
-  useEffect(() => {
-    setProducts(categoriesMap[category])
-  }, [category, categoriesMap])
+  // useEffect(() => {
+  //   setProducts(categoriesMap[category])
+  // }, [category, categoriesMap])
 
   return (
     <Fragment>
